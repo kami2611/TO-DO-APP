@@ -5,7 +5,7 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
 router.get('/', (req, res)=>{
-    res.render('signup');
+    res.render('authForms/signup');
 });
 router.post('/', async(req, res)=>{
     const {username, password} = req.body;

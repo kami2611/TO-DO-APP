@@ -5,6 +5,7 @@ const signUpRoutes = require('./router/signup');
 const loginRoutes = require('./router/login');
 const taskRoutes = require('./router/task');
 const mongoose = require('mongoose');
+const User = require('./models/user');
 const app = express();
 mongoose.connect('mongodb://127.0.0.1:27017/to-do-app').then(() => {
     console.log("Mongoose Server Started!");
@@ -21,7 +22,7 @@ app.use((req, res, next) => {
         res.locals.currentUser = req.cookies.userInfo;
     } else { res.locals.currentUser = null };
     next();
-})
+});
 
 app.use('/signup', signUpRoutes);
 app.use('/login', loginRoutes);
@@ -38,8 +39,19 @@ app.get('/home', (req, res) => {
 app.get('/getStarted', (req, res) => {
     res.render('signup');
 })
-app.get('/dashboard',verifyJwt, (req, res)=>{
-    res.render('dashboard');
+app.get('/dashboard',verifyJwt, async(req, res)=>{
+    const user = await User.findById(req.user.id).populate('tasks');
+    const completedTasks = user.tasks.filter((task)=>task.isCompleted === true).length;
+    console.log(completedTasks);
+    
+    const notcompletedTasks = user.tasks.filter((task)=>task.isCompleted === false).length;
+    console.log(completedTasks);
+    const totalTasks = user.tasks.length;
+    const tasksinfo = {
+        completedTasks,notcompletedTasks,totalTasks 
+    };
+
+    res.render('dashboard', {tasksinfo});
 });
 
 app.listen(3000, () => {

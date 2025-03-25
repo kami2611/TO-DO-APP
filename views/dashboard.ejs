@@ -215,12 +215,12 @@ body {
         <!-- Main Content -->
         <div class="main-content">
             <h3>Dashboard</h3>
-            <h1>Good Afternoon, <%= currentUser.username %>  <br> Here Your All Completed Tasks</h1>
+            <h1>Good Afternoon, <%= currentUser.username %></h1>
             <a href="/tasks/add"><button class="add-task">ADD NEW TASK</button></a>
 
             <!-- <h4>Completed Tasks</h4> -->
 
-            <div class="task-group">
+            <!-- <div class="task-group">
                 <div class="task-header">
                     <span>💼 Work</span>
                     <span>2 Completed Tasks</span>
@@ -252,7 +252,7 @@ body {
                     <h3>Shopping for Trip</h3>
                     <span class="task-date">2023-03-12</span>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- User Profile Section -->
@@ -262,9 +262,9 @@ body {
                 <h3>Hello, <br><strong><%= currentUser.username %>   </strong></h3>
             </div>
             <div class="task-stats">
-                <p><span class="blue-bar"></span> Total Tasks <strong>7</strong></p>
-                <p><span class="green-bar"></span> Completed Tasks <strong>4</strong></p>
-                <p><span class="red-bar"></span> Pending Tasks <strong>3</strong></p>
+                <p><span class="blue-bar"></span> Total Tasks <strong><%=tasksinfo.totalTasks   %>  </strong></p>
+                <p><span class="green-bar"></span> Completed Tasks &nbsp; <strong>  <%= tasksinfo.completedTasks %> </strong></p>
+                <p><span class="red-bar"></span> Pending Tasks <strong> <%= tasksinfo.notcompletedTasks %> </strong></p>
             </div>
         </div>
     </div>
