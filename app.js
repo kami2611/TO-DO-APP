@@ -35,6 +35,12 @@ app.use((req, res, next) => {
 app.use('/signup', signUpRoutes);
 app.use('/login', loginRoutes);
 
+app.get('/logout', verifyJwt, (req, res)=>{
+    res.clearCookie('token');
+    res.clearCookie('userInfo');
+    res.redirect('/home');
+});
+
 app.get('/home', (req, res) => {
     res.render('home');
 });

@@ -166,7 +166,11 @@ body {
                 <h1 class="middle-heading">TO DO'S, JUST TASKS</h1>
                 <p>keep tracks of daily tasks in life and get that satisfaction upon completion</p>
                 <div class="get-started-learnMore-buttons">
-                    <a href="/getStarted"><button>Get Started</button></a>
+                    <% if (currentUser) { %>
+                        <a href="/dashboard"><button>DashBoard</button></a>
+                    <% } else { %>
+                        <a href="/getStarted"><button>Get Started</button></a>
+                    <% } %> 
                     <a href="/learnMore"><button>Learn More</button></a>
                 </div>
             </div>

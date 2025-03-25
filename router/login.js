@@ -20,6 +20,11 @@ router.post('/', async(req, res)=>{
             res.cookie('token', token, {
                 httpOnly:true
             });
+            const userInfo = {
+                username: user.username,
+                uid:user._id
+            }
+            res.cookie("userInfo",userInfo);
         };
         //flash message that signin successful
         return res.redirect('/home');
