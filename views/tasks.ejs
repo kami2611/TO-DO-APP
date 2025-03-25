@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<style>
+    /* General Styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    flex-direction: column;
+}
+
+/* Page Title */
+.page-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Tasks Container */
+.tasks-container {
+    width: 60%;
+}
+
+/* Task List */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Task Card */
+.task-card {
+    background: #1e1e1e;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.task-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Task Header */
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+/* Task Category Styling */
+.task-category {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+/* Different Colors for Categories */
+.task-category.work {
+    background-color: #007bff;
+}
+
+.task-category.personal {
+    background-color: #ff4b5c;
+}
+
+/* Task Date */
+.task-date {
+    font-size: 12px;
+    color: #bbb;
+}
+
+/* Task Text */
+.task-text {
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+</style>
+<body>
+    <div class="tasks-container">
+        <h1 class="page-heading">Your Tasks</h1>
+
+        <div class="task-list">
+            <% for (let task of tasks) { %>
+                <div class="task-card">
+                    <div class="task-header">
+                        <a href="/tasks/<%= task.category.toLowerCase()%>">
+                            <span class="task-category <%= task.category.toLowerCase() %>">
+                                <%= task.category %>
+                            </span>
+                        </a>
+                        <span class="task-date">
+                            <%= new Date(task.createdAt).toLocaleDateString() %>
+                        </span>
+                    </div>
+                    <p class="task-text"><%= task.text %></p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

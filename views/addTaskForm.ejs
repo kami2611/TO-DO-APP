@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add task</title>
+</head>
+<style>
+  /* Center the Form */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Form Container */
+form {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Input Fields */
+input, select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    background: #222;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Input Placeholder Color */
+input::placeholder {
+    color: #888;
+}
+
+/* Custom Dropdown Styling */
+select {
+    appearance: none;
+    cursor: pointer;
+    background: #222 url('data:image/svg+xml;utf8,<svg fill="%23ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5H7z"/></svg>') no-repeat right 10px center;
+    background-size: 15px;
+    padding-right: 30px; /* Ensure space for the arrow */
+}
+
+/* Button */
+button {
+    background: #ff4b5c;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Labels */
+label {
+    font-size: 14px;
+    color: #ccc;
+}
+
+</style>
+<body>
+    <form action="/tasks" method="post">
+        <label for="tasktext">
+            <input type="text" id="tasktext" placeholder="Add task" name="tasktext" required>
+        </label>
+    
+        <label for="taskcategory">Choose Category:</label>
+        <select name="taskcategory" id="taskcategory" required>
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+        </select>
+    
+        <button type="submit">Add Task</button>
+    </form>
+</body>
+</html>

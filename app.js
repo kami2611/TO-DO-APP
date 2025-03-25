@@ -1,8 +1,9 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const jwt = require('jsonwebtoken');
+const verifyJwt = require('./middlewares/auth');
 const signUpRoutes = require('./router/signup');
 const loginRoutes = require('./router/login');
+const taskRoutes = require('./router/task');
 const mongoose = require('mongoose');
 const app = express();
 mongoose.connect('mongodb://127.0.0.1:27017/to-do-app').then(() => {
@@ -10,16 +11,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/to-do-app').then(() => {
 }).catch((err) => {
     console.log("Err mongoose!");
 });
-
-function verifyJwt(req, res, next) {
-    const token = req.cookies.token;
-    if (!token) {
-        return res.send('not authenticated');
-    }
-    const user = jwt.verify(token, 'mysupersecrettokenkey');
-    req.user = user;
-    next();
-}
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -34,7 +25,7 @@ app.use((req, res, next) => {
 
 app.use('/signup', signUpRoutes);
 app.use('/login', loginRoutes);
-
+app.use('/tasks', taskRoutes);
 app.get('/logout', verifyJwt, (req, res)=>{
     res.clearCookie('token');
     res.clearCookie('userInfo');
@@ -47,9 +38,10 @@ app.get('/home', (req, res) => {
 app.get('/getStarted', (req, res) => {
     res.render('signup');
 })
-app.get('/secret', verifyJwt, (req, res) => {
-    res.send('understand mind');
+app.get('/dashboard',verifyJwt, (req, res)=>{
+    res.render('dashboard');
 });
+
 app.listen(3000, () => {
     console.log('ON PORT 3000!');
 });

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Dashboard</title>
+    
+</head>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #fff;
+    display: flex;
+}
+
+/* Dashboard Layout */
+.dashboard-container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 180px;  /* Reduced from 220px */
+    background-color: #181818;
+    padding: 15px;
+    height: 100vh;
+}
+
+.sidebar h2 {
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    color: #999;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 8px;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    color: #00ff88;
+    font-weight: bold;
+}
+
+/* Main Content - Expanded Width */
+.main-content {
+    flex: 2;  /* Increased to take more space */
+    padding: 40px;
+}
+
+/* Adjusted Headers */
+.main-content h3 {
+    font-size: 16px;
+    color: #aaa;
+}
+
+.main-content h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* Button */
+.add-task {
+    background-color: #ff4b5c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.add-task:hover {
+    opacity: 0.8;
+}
+
+/* Task Group */
+.task-group {
+    margin-bottom: 20px;
+}
+
+.task-header {
+    background: #222;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Task Cards */
+.task-card {
+    background: #1e1e1e;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-card h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.task-card p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #bbb;
+}
+
+.task-date {
+    color: #999;
+    font-size: 14px;
+}
+
+/* User Profile - Reduced Width */
+.user-profile {
+    width: 200px; /* Reduced from 250px */
+    background-color: #181818;
+    padding: 15px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-info img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #ff4b5c;
+    padding: 5px;
+}
+
+.profile-info h3 {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Task Stats */
+.task-stats p {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.blue-bar {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: blue;
+    margin-right: 5px;
+}
+
+.green-bar {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: green;
+    margin-right: 5px;
+}
+
+.red-bar {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: red;
+    margin-right: 5px;
+}
+</style>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>collection</h2>
+            <ul>
+                <li><a href="#">Pending Tasks</a></li>
+                <li><a href="#" class="active">Completed Tasks</a></li>
+                <li><a href="/tasks">All Tasks</a></li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <h3>Dashboard</h3>
+            <h1>Good Afternoon, <%= currentUser.username %>  <br> Here Your All Completed Tasks</h1>
+            <a href="/tasks/add"><button class="add-task">ADD NEW TASK</button></a>
+
+            <!-- <h4>Completed Tasks</h4> -->
+
+            <div class="task-group">
+                <div class="task-header">
+                    <span>💼 Work</span>
+                    <span>2 Completed Tasks</span>
+                </div>
+                <div class="task-card">
+                    <h3>Meeting with Client</h3>
+                    <p>Meeting with the Client for new upcoming Projects</p>
+                    <span class="task-date">2023-03-10</span>
+                </div>
+                <div class="task-card">
+                    <h3>Read Pending Mails</h3>
+                    <span class="task-date">2023-03-15</span>
+                </div>
+            </div>
+
+            <div class="task-group">
+                <div class="task-header">
+                    <span>🧑‍💻 Personal</span>
+                    <span>0 Completed Tasks</span>
+                </div>
+            </div>
+
+            <div class="task-group">
+                <div class="task-header">
+                    <span>🛒 Shopping</span>
+                    <span>2 Completed Tasks</span>
+                </div>
+                <div class="task-card">
+                    <h3>Shopping for Trip</h3>
+                    <span class="task-date">2023-03-12</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Profile Section -->
+        <div class="user-profile">
+            <div class="profile-info">
+                <img src="https://i.imgur.com/0nK14U5.png" alt="User">
+                <h3>Hello, <br><strong><%= currentUser.username %>   </strong></h3>
+            </div>
+            <div class="task-stats">
+                <p><span class="blue-bar"></span> Total Tasks <strong>7</strong></p>
+                <p><span class="green-bar"></span> Completed Tasks <strong>4</strong></p>
+                <p><span class="red-bar"></span> Pending Tasks <strong>3</strong></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
