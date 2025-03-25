@@ -3,8 +3,6 @@ const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const signUpRoutes = require('./router/signup');
 const loginRoutes = require('./router/login');
-const bcrypt = require('bcrypt');
-const User = require('./models/user');
 const mongoose = require('mongoose');
 const app = express();
 mongoose.connect('mongodb://127.0.0.1:27017/to-do-app').then(() => {
@@ -38,10 +36,6 @@ app.get('/home', (req, res)=>{
 app.get('/secret',verifyJwt, (req, res)=>{
     res.send('understand mind');
 });
-app.get('/decret',verifyJwt, (req, res)=>{
-    console.log(req.user);
-});
-
 app.listen(3000, ()=>{
     console.log('ON PORT 3000!');
 });
