@@ -1,4 +1,4 @@
-const express= require('express');
+const express = require('express');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const signUpRoutes = require('./router/signup');
@@ -11,10 +11,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/to-do-app').then(() => {
     console.log("Err mongoose!");
 });
 
-function verifyJwt(req, res, next){
+function verifyJwt(req, res, next) {
     const token = req.cookies.token;
-    if(!token)
-    {
+    if (!token) {
         return res.send('not authenticated');
     }
     const user = jwt.verify(token, 'mysupersecrettokenkey');
@@ -22,20 +21,29 @@ function verifyJwt(req, res, next){
     next();
 }
 
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.set('view engine', 'ejs');
 
-app.use('/signup',signUpRoutes);
+app.use((req, res, next) => {
+    if (req.cookies.userInfo) {
+        res.locals.currentUser = req.cookies.userInfo;
+    } else { res.locals.currentUser = null };
+    next();
+})
+
+app.use('/signup', signUpRoutes);
 app.use('/login', loginRoutes);
 
-app.get('/home', (req, res)=>{
+app.get('/home', (req, res) => {
     res.render('home');
 });
-
-app.get('/secret',verifyJwt, (req, res)=>{
+app.get('/getStarted', (req, res) => {
+    res.render('signup');
+})
+app.get('/secret', verifyJwt, (req, res) => {
     res.send('understand mind');
 });
-app.listen(3000, ()=>{
+app.listen(3000, () => {
     console.log('ON PORT 3000!');
 });

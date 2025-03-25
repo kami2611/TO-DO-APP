@@ -16,7 +16,12 @@ router.post('/', async(req, res)=>{
     const token = jwt.sign({id: newUser._id, username: newUser.username}, 'mysupersecrettokenkey', {expiresIn:'1h'});
     res.cookie("token", token, {
         httpOnly:true
-    })
+    });
+    const userInfo = {
+        username: newUser.username,
+        uid:newUser._id
+    }
+    res.cookie("userInfo",userInfo);
     res.redirect('/home');
     //flash messages to home. signup successful;
 });
