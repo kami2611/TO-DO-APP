@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<style>
+    /* Centering the login Form */
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+}
+
+/* Form Styling */
+.login-form form {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+/* Input Fields */
+.login-form form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    background: #222;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Input Focus Effect */
+.login-form form input:focus {
+    background: #333;
+    box-shadow: 0px 0px 10px rgba(0, 212, 255, 0.5);
+}
+
+/* Submit Button */
+.login-form form button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #007bff, #00d4ff);
+    color: white;
+    transition: 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+.login-form form button:hover {
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .login-form form {
+        width: 90%;
+    }
+}
+</style>
+<body>
+    <div class="login-form">
+        <form action="/login" method="post">
+
+            <label for="username">
+                <input type="text" required="true" placeholder="username" name="username">
+            </label>
+
+            <label for="password">
+                <input type="password" required="true" placeholder="password" name="password">
+            </label>
+            <button type="submit">login</button>
+        </form>
+    </div>
+</body>
+</html>

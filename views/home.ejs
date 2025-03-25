@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+</head>
+<style>
+    /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body Styles */
+body {
+    background-color: #0f0f0f; /* Dark background */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Main Container */
+.main-cont {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+/* Header Section */
+/* Header Section - Move Up */
+.header {
+    position: absolute;
+    top: 10px; /* Moves it up */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+}
+
+
+/* Logo */
+.logo h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Login/Signup Buttons */
+.login-signup-buttons a button {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.login-signup-buttons a button:hover {
+    background-color: #1e1e1e;
+}
+
+/* Body Section */
+.body {
+    text-align: center;
+    margin-top: 100px;
+}
+
+/* Middle Text */
+.middle-text .middle-heading {
+    font-size: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Description */
+.middle-text p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #bbb;
+}
+
+/* Buttons Section */
+.get-started-learnMore-buttons {
+    margin-top: 20px;
+}
+
+/* Buttons Styling */
+.get-started-learnMore-buttons a button {
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+/* Get Started Button */
+.get-started-learnMore-buttons a:first-child button {
+    background: linear-gradient(90deg, #007bff, #00d4ff);
+    color: white;
+}
+
+.get-started-learnMore-buttons a:first-child button:hover {
+    opacity: 0.8;
+}
+
+/* Learn More Button */
+.get-started-learnMore-buttons a:last-child button {
+    background: #222;
+    color: #fff;
+    border: 2px solid #444;
+}
+
+.get-started-learnMore-buttons a:last-child button:hover {
+    background: #444;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .middle-text .middle-heading {
+        font-size: 36px;
+    }
+
+    .middle-text p {
+        font-size: 16px;
+    }
+
+    .get-started-learnMore-buttons a button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+</style>
+<body>
+    <div class="main-cont">
+    <div class="header">
+        <div class="logo">
+            <h2>TO-DO</h2>
+        </div>
+        <div class="login-signup-buttons">
+            <a href="/login"><button>login</button></a>
+            <a href="/signup"><button>signUp</button></a>
+        </div>
+    </div>
+
+        <div class="body">
+            <div class="middle-text">
+                <h1 class="middle-heading">TO DO'S, JUST TASKS</h1>
+                <p>keep tracks of daily tasks in life and get that satisfaction upon completion</p>
+                <div class="get-started-learnMore-buttons">
+                    <a href="/getStarted"><button>Get Started</button></a>
+                    <a href="/learnMore"><button>Learn More</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
