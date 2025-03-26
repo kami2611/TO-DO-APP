@@ -12,7 +12,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/to-do-app').then(() => {
 }).catch((err) => {
     console.log("Err mongoose!");
 });
-
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.set('view engine', 'ejs');

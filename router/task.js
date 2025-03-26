@@ -27,8 +27,12 @@ router.get('/',verifyJwt, async(req, res)=>{
     console.log(tasks);
     res.render('tasks', {tasks});
 });
-
-
+router.post('/remove', async(req, res)=>{
+    console.log(req.body);
+    const {taskId} = req.body;
+    await Task.findByIdAndUpdate(taskId,{isCompleted:true}, {new:true});
+    res.json({completed: true});
+})
 
 router.get('/add',verifyJwt, (req, res)=>{
     res.render('addTaskForm');

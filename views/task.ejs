@@ -88,7 +88,9 @@ body {
     font-size: 16px;
     line-height: 1.4;
 }
-
+.markcompleteddecoration {
+    text-decoration: line-through;
+}
 </style>
 <body>
     <div class="tasks-container">
@@ -105,9 +107,42 @@ body {
                             <%= new Date(task.createdAt).toLocaleDateString() %>
                         </span>
                     </div>
-                    <p class="task-text"><%= task.text %></p>
+                    <% if (task.isCompleted) { %>
+                        <p class="task-text markcompleteddecoration" id="task_text"><%= task.text %></p>  
+                    <% } else { %>
+                        <p class="task-text" id="task_text"><%= task.text %></p>
+                    <% } %>
+                    
+                     <% if (!task.isCompleted) { %>
+                        <button id="completed-btn" data-id="<%= task.id %>">mark as completed</button>                      
+                     <% } %>
                 </div>
         </div>
-    </div>
+    </div> 
+    <script>
+        const completedButton = document.getElementById('completed-btn');
+        
+        completedButton.addEventListener("click", ()=>{
+            const taskId = completedButton.dataset.id;
+            fetch('http://localhost:3000/tasks/remove',{
+                method:'POST',
+                headers:{
+                    'Content-Type':"application/json"
+                },
+                body:JSON.stringify({
+                    taskId: taskId
+                })
+            }).then((res)=>res.json()).then((data)=>{
+                console.log(data);
+                console.log(data.completed);
+                if(data.completed)
+            {
+                console.log('completed the task. nice');
+                const task_text = document.getElementById('task_text');
+                task_text.style.textDecoration="line-through";
+            }
+            });
+        })
+</script>
 </body>
 </html>

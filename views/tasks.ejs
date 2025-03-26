@@ -106,7 +106,9 @@ body {
     color: #00c6ff;
     text-decoration: underline;
 }
-
+.markcompleteddecoration {
+    text-decoration: line-through;
+}
 </style>
 <body>
     <div class="tasks-container">
@@ -123,7 +125,12 @@ body {
                             <%= new Date(task.createdAt).toLocaleDateString() %>
                         </span>
                     </div>
-                    <p class="task-text"><%= task.text %></p>
+                    <% if (task.isCompleted) { %>
+                        <p class="task-text markcompleteddecoration"><%= task.text %></p>
+                    <% } else { %>
+                        <p class="task-text"><%= task.text %></p>
+                    <% } %>
+                    
                     <a href="/tasks/<%= task.id %>" class="task-link">View Task →</a>
                 </div>
             <% } %>
