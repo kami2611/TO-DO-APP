@@ -4,17 +4,36 @@ const router = express.Router();
 const Task = require('../models/task');
 const verifyJwt = require('../middlewares/auth');
 router.get('/',verifyJwt, async(req, res)=>{
-    console.log(req.user.id);
-    const user = await User.findById(req.user.id).populate('tasks');
-    const tasks = user.tasks;
+    let status = req.query.status;
+    let tasks;
+    if(status)
+    {
+        if(status==='pending')
+        {
+            let isCompleted = false;
+            status = isCompleted;
+        }else if(status==='completed')
+        {
+            let isCompleted = true;
+            status = isCompleted;
+        }
+        const user = await User.findById(req.user.id).populate('tasks');
+        tasks = user.tasks.filter((task)=>task.isCompleted===status);
+        console.log(status); //completed, pending
+    }else{
+        const user = await User.findById(req.user.id).populate('tasks');
+        tasks = user.tasks;
+    }
     console.log(tasks);
     res.render('tasks', {tasks});
 });
 
+
+
 router.get('/add',verifyJwt, (req, res)=>{
     res.render('addTaskForm');
 });
-router.get('/:category',verifyJwt, async(req, res)=>{
+router.get('/:category(work|personal)',verifyJwt, async(req, res)=>{
     const {category} = req.params;
     const user = await User.findById(req.user.id).populate('tasks');
     const tasks = user.tasks.filter((task)=>task.category===`${category}`);

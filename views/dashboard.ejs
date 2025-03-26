@@ -207,8 +207,8 @@ body {
         <div class="sidebar">
             <h2>collection</h2>
             <ul>
-                <li><a href="#">Pending Tasks</a></li>
-                <li><a href="#" class="active">Completed Tasks</a></li>
+                <li><a href="/tasks?status=pending" class="active">Pending Tasks</a></li>
+                <li><a href="/tasks?status=completed">Completed Tasks</a></li>
                 <li><a href="/tasks">All Tasks</a></li>
             </ul>
         </div>
@@ -258,12 +258,13 @@ body {
         <!-- User Profile Section -->
         <div class="user-profile">
             <div class="profile-info">
-                <img src="https://i.imgur.com/0nK14U5.png" alt="User">
+                <img src="#" alt="User">
                 <h3>Hello, <br><strong><%= currentUser.username %>   </strong></h3>
             </div>
             <div class="task-stats">
                 <p><span class="blue-bar"></span> Total Tasks <strong><%=tasksinfo.totalTasks   %>  </strong></p>
                 <p><span class="green-bar"></span> Completed Tasks &nbsp; <strong>  <%= tasksinfo.completedTasks %> </strong></p>
+
                 <p><span class="red-bar"></span> Pending Tasks <strong> <%= tasksinfo.notcompletedTasks %> </strong></p>
             </div>
         </div>
