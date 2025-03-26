@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <style>
-/* General Styling */
+    /* General Styling */
 body {
     display: flex;
     justify-content: center;
@@ -45,7 +45,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
     transition: transform 0.2s ease-in-out;
-    position: relative;
 }
 
 .task-card:hover {
@@ -67,10 +66,9 @@ body {
     padding: 5px 10px;
     border-radius: 5px;
     text-transform: uppercase;
-    text-decoration: none;
-    color: white;
 }
 
+/* Different Colors for Categories */
 .task-category.work {
     background-color: #007bff;
 }
@@ -89,44 +87,26 @@ body {
 .task-text {
     font-size: 16px;
     line-height: 1.4;
-    margin-bottom: 8px;
-}
-
-/* Task Link */
-.task-link {
-    display: inline-block;
-    color: #4facfe;
-    font-size: 14px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
-}
-
-.task-link:hover {
-    color: #00c6ff;
-    text-decoration: underline;
 }
 
 </style>
 <body>
     <div class="tasks-container">
-        <h1 class="page-heading">Your Tasks</h1>
-
+        <h1 class="page-heading">Task</h1>
         <div class="task-list">
-            <% for (let task of tasks) { %>
                 <div class="task-card">
                     <div class="task-header">
-                        <a href="/tasks/<%= task.category.toLowerCase()%>" class="task-category <%= task.category.toLowerCase() %>">
-                            <%= task.category %>
+                        <a href="/tasks/<%= task.category.toLowerCase()%>">
+                            <span class="task-category <%= task.category.toLowerCase() %>">
+                                <%= task.category %>
+                            </span>
                         </a>
                         <span class="task-date">
                             <%= new Date(task.createdAt).toLocaleDateString() %>
                         </span>
                     </div>
                     <p class="task-text"><%= task.text %></p>
-                    <a href="/tasks/<%= task.id %>" class="task-link">View Task →</a>
                 </div>
-            <% } %>
         </div>
     </div>
 </body>

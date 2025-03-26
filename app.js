@@ -33,7 +33,7 @@ app.get('/logout', verifyJwt, (req, res)=>{
     res.redirect('/home');
 });
 
-app.get('/home', (req, res) => {
+app.get(['/','/home'], (req, res) => {
     res.render('home');
 });
 app.get('/getStarted', (req, res) => {

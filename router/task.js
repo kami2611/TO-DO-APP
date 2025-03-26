@@ -40,6 +40,15 @@ router.get('/:category(work|personal)',verifyJwt, async(req, res)=>{
     console.log(category);
     res.render('tasks', {tasks});
 });
+router.get('/:id', async(req, res)=>{
+    console.log(req.params.id);
+    const task = await Task.findById(req.params.id);
+    if(task)
+    {
+        return res.render('task', {task});
+    }
+    return res.sendStatus(404);
+});
 router.post('/',verifyJwt, async(req, res)=>{
     const { tasktext, taskcategory } = req.body;
     const user = await User.findById(req.user.id);
